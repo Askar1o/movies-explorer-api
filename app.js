@@ -7,7 +7,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const handleErrors = require('./errors/handleErrors');
 const {
-  LIMITER, PORT, MONGO, MONGO_OPTIONS,
+  LIMITER, PORT, MONGO, MONGO_OPTIONS
 } = require('./utils/config');
 const router = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -22,7 +22,15 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(LIMITER);
 
-app.use(cors({ origin: ['http://localhost:3001',], credentials: true }));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:4001',
+      'https://askario.diplom.nomoredomainsrocks.ru',
+    ],
+    credentials: true,
+  })
+);
 
 app.use(requestLogger);
 
